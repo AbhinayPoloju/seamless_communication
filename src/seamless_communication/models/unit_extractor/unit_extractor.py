@@ -74,10 +74,10 @@ class UnitExtractor(nn.Module):
             ), f"Input audio must have {sample_rate} sampling rate"
 
         else:
-            assert audio.dim() <= 2, "The audio tensor can't be more than 2 dimensions."
-            if audio.dim() == 1:
+            assert audio.ndim() <= 2, "The audio tensor can't be more than 2 ndimensions."
+            if audio.ndim() == 1:
                 audio = audio.unsqueeze(1)
-            elif audio.dim() == 2 and audio.size(0) < audio.size(1):
+            elif audio.ndim() == 2 and audio.size(0) < audio.size(1):
                 logger.warning(
                     "Transposing audio tensor from (bsz, seq_len) -> (seq_len, bsz)."
                 )
